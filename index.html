@@ -1,134 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>IronMan Hand Simulator — A Heroic Aid for Children with Autism</title>
-  <meta name="description" content="Playful, accessible showcase of the IronMan Hand Simulator: code, images, and mission to empower autistic children through engaging tech."/>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
-  <link rel="stylesheet" href="assets/styles.css" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>IronMan Hand Simulator — Support for Autism</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c1720;
+    --card:#10202b;
+    --ink:#e8f2ff;
+    --muted:#a8c0d6;
+    --accent1:#6aa9ff;
+    --accent2:#9b7bff;
+    --brand:#ffd54a; /* byline yellow */
+    --chip:#0f2734;
+    --chip-ink:#9ed0ff;
+    --green:#4ee0a8;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  a{color:inherit}
+  .container{max-width:1120px;margin:0 auto;padding:32px 20px 80px}
+
+  /* HERO */
+  .hero{
+    position:relative;overflow:hidden;border-radius:28px;
+    background:
+      radial-gradient(1200px 500px at 80% -10%, rgba(255,70,80,.15), transparent 50%),
+      radial-gradient(900px 400px at -10% 110%, rgba(80,160,255,.18), transparent 60%),
+      linear-gradient(180deg, #0f1f2a 0%, #0b1620 100%);
+    padding:44px 28px 28px;
+    display:grid;grid-template-columns:1.1fr .9fr;gap:20px;
+  }
+  .brand{
+    font-weight:900;line-height:1.05;
+    font-size:clamp(28px,5vw,44px);
+    margin:2px 0 8px;
+    letter-spacing:.2px;
+  }
+  .brand em{font-style:normal;
+    background:linear-gradient(90deg, var(--accent1), var(--accent2));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .byline{color:var(--brand);font-weight:800;margin:6px 0 14px;font-size:clamp(14px,2.1vw,18px)}
+  .hero p{color:var(--muted);margin:0 0 18px;font-size:clamp(14px,2.2vw,18px)}
+  .cta-row{display:flex;gap:12px;flex-wrap:wrap}
+  .btn{
+    padding:14px 18px;border-radius:16px;border:1px solid rgba(255,255,255,.08);
+    background:linear-gradient(90deg,#6aa9ff,#9b7bff);color:#07121a;font-weight:800;
+    box-shadow:0 10px 30px rgba(100,140,255,.22);text-decoration:none
+  }
+  .btn.secondary{
+    background:transparent;color:var(--ink);border-color:rgba(255,255,255,.14)
+  }
+  .hero-art{
+    position:relative;aspect-ratio:1.2/1;border-radius:22px;overflow:hidden;
+    background:linear-gradient(145deg,#1b2833,#09131a);
+    border:1px solid rgba(255,255,255,.06)
+  }
+  .hero-art img{width:100%;height:100%;object-fit:cover;opacity:.9}
+
+  /* SECTION */
+  h2{font-size:clamp(20px,3.6vw,28px);margin:28px 4px 14px}
+  .grid{display:grid;gap:16px}
+  .cards{grid-template-columns:1fr 1fr}
+  .card{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:20px;padding:16px}
+  .snap{border-radius:16px;overflow:hidden;background:#1a2b36;aspect-ratio:16/9;display:grid;place-items:center}
+  .snap img{width:100%;height:100%;object-fit:cover}
+  .caption{margin-top:10px;color:var(--muted)}
+  .stack{display:flex;gap:10px;flex-wrap:wrap}
+  .chip{background:var(--chip);color:var(--chip-ink);border:1px solid rgba(158,208,255,.25);
+        padding:8px 12px;border-radius:999px;font-weight:700;font-size:13px}
+  .code-zone{display:grid;grid-template-columns:300px 1fr;gap:16px}
+  .filelist{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:18px;padding:10px}
+  .file{display:flex;justify-content:space-between;gap:8px;padding:10px 12px;border-radius:12px;
+        color:var(--muted);cursor:pointer}
+  .file:hover{background:#0f2734;color:#d7e8f8}
+  .file.active{background:#123246;color:#fff}
+  pre{margin:0}
+  .viewer{background:#0e1f29;border:1px solid rgba(255,255,255,.06);border-radius:18px;padding:14px}
+  .viewer header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+  .viewer header a{color:var(--accent1);text-decoration:underline}
+  .code{
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size:13.5px;line-height:1.55;color:#d7e8f8;background:#0a1620;padding:14px;border-radius:14px;overflow:auto;
+  }
+  .ok{color:var(--green)}
+  @media (max-width:900px){
+    .hero{grid-template-columns:1fr}
+    .code-zone{grid-template-columns:1fr}
+    .cards{grid-template-columns:1fr}
+  }
+</style>
 </head>
 <body>
-<header class="site-header">
-  <div class="wrap">
-    <div class="brand">
-      <div class="arc-reactor" aria-hidden="true"><span></span></div>
-      <h1>IronMan Hand Simulator</h1>
-    </div>
-    <nav class="topnav">
-      <a href="#mission">Mission</a>
-      <a href="#gallery">Snapshots</a>
-      <a href="#code">Code</a>
-      <a href="#credits">Credits</a>
-    </nav>
-  </div>
-</header>
+  <div class="container">
 
-<section class="hero" role="banner" aria-label="Project hero">
-  <div class="wrap">
-    <div class="hero-copy">
-      <h2>A Heroic Aid for Children with Autism</h2>
-      <p>
-        We blend <strong>engineering</strong> with <strong>empathy</strong> to create a playful,
-        inclusive simulator that helps kids feel confident and engaged&mdash;like a superhero.
-      </p>
-      <div class="cta-row">
-        <a class="btn primary" href="#code">View Code</a>
-        <a class="btn" href="#gallery">See the Device</a>
+    <!-- HERO -->
+    <section class="hero">
+      <div>
+        <div class="brand"><em>IronMan Hand Simulator</em>: A Heroic Aid for Children with Autism</div>
+        <div class="byline">By Harsh Byjesh — Aspiring Quantitative Trader</div>
+        <p>A playful, inclusive assistive-tech project that turns therapy into adventure. Gesture control, haptics, and a VR interface make engagement feel heroic while logging progress for caregivers.</p>
+        <div class="stack" style="margin-bottom:12px">
+          <span class="chip">MYO armband</span>
+          <span class="chip">Gesture recognition</span>
+          <span class="chip">Python</span>
+          <span class="chip">VR + Haptics</span>
+          <span class="chip">Data logging</span>
+        </div>
+        <div class="cta-row">
+          <a class="btn" href="#code">View Code</a>
+          <a class="btn secondary" href="#device">See the Device</a>
+        </div>
       </div>
-      <div class="toggles">
-        <button id="reduceMotion" class="linklike" aria-pressed="false">🧘 Calm Mode</button>
-        <button id="highContrast" class="linklike" aria-pressed="false">🔳 High Contrast</button>
+      <div class="hero-art">
+        <!-- Put your Iron Man image at images/ironman.jpg (or keep the two below) -->
+        <img src="images/ironman.jpg" alt="Iron Man themed assistive device" onerror="this.src='images/myo.png'">
+      </div>
+    </section>
+
+    <!-- SNAPSHOTS -->
+    <h2 id="device">Project Snapshots</h2>
+    <div class="grid cards">
+      <div class="card">
+        <div class="snap">
+          <img src="images/myo.png" alt="MYO integration photo">
+        </div>
+        <div class="caption">MYO Integration</div>
+      </div>
+      <div class="card">
+        <div class="snap">
+          <img src="images/vr.png" alt="VR interface photo">
+        </div>
+        <div class="caption">VR Interface</div>
       </div>
     </div>
-    <div class="hero-art" aria-hidden="true">
-      <div class="repulsor">
-        <div class="ring r1"></div>
-        <div class="ring r2"></div>
-        <div class="ring r3"></div>
-        <div class="core"></div>
+
+    <!-- CODE -->
+    <h2 id="code">Source Code (Live Preview)</h2>
+    <div class="code-zone">
+      <div class="filelist" id="fileList">
+        <!-- Populated by JS -->
+      </div>
+      <div class="viewer">
+        <header>
+          <strong id="currentName">Select a file</strong>
+          <a id="rawLink" href="#" target="_blank" rel="noopener">Open raw</a>
+        </header>
+        <pre class="code" id="codeView">// Pick a file from the left to preview the Python source.</pre>
       </div>
     </div>
-  </div>
-</section>
 
-<section id="mission" class="panel">
-  <div class="wrap">
-    <h3>Mission &amp; Approach</h3>
-    <div class="grid-3">
-      <article class="card">
-        <h4>Playful &amp; Therapeutic</h4>
-        <p>Designed around <em>playful interaction</em> + subtle therapeutic cues to keep learning joyful.</p>
-      </article>
-      <article class="card">
-        <h4>Inclusive Tech</h4>
-        <p>Built to be supportive and sensory-considerate. Calm Mode reduces motion for comfort.</p>
-      </article>
-      <article class="card">
-        <h4>Open &amp; Transparent</h4>
-        <p>All core logic is open-sourced so others can fork, extend, and help more kids.</p>
-      </article>
-    </div>
   </div>
-</section>
 
-<section id="gallery" class="panel">
-  <div class="wrap">
-    <h3>Project Snapshots</h3>
-    <p class="muted">Images shown are placeholders. Replace <code>/images</code> with your actual device pictures.</p>
-    <div class="gallery">
-      <figure>
-        <img src="images/myo.png" alt="MYO integration photo placeholder">
-        <figcaption>MYO Integration</figcaption>
-      </figure>
-      <figure>
-        <img src="images/vr.png" alt="VR interface photo placeholder">
-        <figcaption>VR Interface</figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
+<script>
+/**
+ * Why your files/images showed 404 before:
+ * You used paths beginning with "/" (absolute to site root). Because your page lives
+ * inside a subfolder, those pointed to the wrong place on GitHub Pages.
+ * We switch to RELATIVE paths (no leading slash) so "codes/..." and "images/..."
+ * resolve correctly regardless of the folder name or spaces.
+ */
+const files = [
+  "calibration.py","config.py","data_logging.py","effects_audio.py","effects_light.py",
+  "gesture_recognition.py","main_demo.py","myo_integration.py","repulsor_game.py",
+  "simulator_core.py","ui_dashboard.py","vr_interface.py"
+];
 
-<section id="code" class="panel code-panel">
-  <div class="wrap code-wrap">
-    <aside class="code-list" aria-label="Code files list">
-      <h4>Code Files</h4>
-      <ul id="fileList"></ul>
-      <div class="note">
-        Files are fetched live from <code>/codes/</code>. Keep the directory structure when hosting.
-      </div>
-    </aside>
-    <main class="code-view" aria-live="polite" aria-busy="false">
-      <div class="code-toolbar">
-        <span id="currentFile">Select a file to view</span>
-        <a id="openRaw" class="linklike" href="#" target="_blank" rel="noopener">Open raw</a>
-      </div>
-      <pre><code id="codeContent" class="hljs language-python">// Choose a file from the left to load its contents here.</code></pre>
-    </main>
-  </div>
-</section>
+const list = document.getElementById('fileList');
+const view = document.getElementById('codeView');
+const nameEl = document.getElementById('currentName');
+const raw = document.getElementById('rawLink');
 
-<section id="credits" class="panel">
-  <div class="wrap">
-    <h3>Credits &amp; Links</h3>
-    <ul class="links">
-      <li>Lead: <strong>Harsh Byjesh</strong></li>
-      <li>Focus: Assistive tech for autistic children via playful interaction</li>
-      <li><a href="https://github.com/" target="_blank" rel="noopener">Project GitHub Repository</a></li>
-    </ul>
-  </div>
-</section>
+function item(file){
+  const el = document.createElement('div');
+  el.className = 'file';
+  el.innerHTML = `<span>${file}</span><span>›</span>`;
+  el.addEventListener('click', ()=>load(file, el));
+  return el;
+}
 
-<footer class="site-footer">
-  <div class="wrap small">
-    <p>© <span id="year"></span> IronMan Hand Simulator • Built with care.</p>
-  </div>
-</footer>
+files.forEach(f=> list.appendChild(item(f)));
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-<script src="assets/app.js"></script>
+async function load(fname, el){
+  [...list.children].forEach(li=>li.classList.remove('active'));
+  el.classList.add('active');
+  nameEl.textContent = fname;
+  raw.href = `codes/${fname}`;
+  view.textContent = 'Loading…';
+  try{
+    const res = await fetch(`codes/${fname}`);
+    if(!res.ok) throw new Error(res.status+' '+res.statusText);
+    const txt = await res.text();
+    view.textContent = txt;
+  }catch(err){
+    view.textContent =
+`// Unable to load ${fname}
+ // Make sure this file exists at: codes/${fname}
+ // Error: ${err}`;
+  }
+}
+</script>
 </body>
 </html>
