@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>IronMan Hand Simulator</title>
   <style>
-    body {margin:0; font-family:Segoe UI, sans-serif; background:#0b1620; color:#dbe9ff}
+    body {margin:0; font-family:Segoe UI, system-ui, -apple-system, Roboto, Arial, sans-serif; background:#0b1620; color:#dbe9ff}
     .container{max-width:1200px;margin:0 auto;padding:2.25rem 1.25rem}
     .hero{
       display:grid; gap:2rem; align-items:center;
@@ -14,20 +13,26 @@
     }
     .hero-text{min-width:0}
     .hero-visual img{width:100%; border-radius:1rem; box-shadow:0 10px 40px rgba(0,0,0,.35)}
-    .title-line{display:block; font-weight:800; letter-spacing:.3px; font-size:2.5rem}
-    .gradient{background:linear-gradient(90deg,#6cb2ff,#9c83ff); -webkit-background-clip:text; color:transparent}
-    .byline{color:#ffd54a; font-weight:700; margin:.35rem 0 1.1rem 0;}
+    .title-line{display:block; font-weight:800; letter-spacing:.3px; font-size:2.8rem; line-height:1.05}
+    .gradient{background:linear-gradient(90deg,#6cb2ff,#9c83ff); -webkit-background-clip:text; background-clip:text; color:transparent}
+    .byline{color:#ffd54a; font-weight:700; margin:.5rem 0 1.1rem}
     .chip-row{display:flex; flex-wrap:wrap; gap:.6rem; margin:.25rem 0 1.2rem}
     .chip{background:#10283a;border:1px solid #1f3a52;padding:.45rem .7rem;border-radius:999px;font-weight:600}
     .btn{padding:.9rem 1.2rem;border-radius:.9rem;font-weight:800;text-decoration:none;display:inline-block}
     .btn-solid{background:linear-gradient(135deg,#6cb2ff,#9c83ff);color:#081520}
     .btn-ghost{color:#dbe9ff;background:rgba(156,131,255,.07)}
+    h2{margin:0 0 .75rem}
     pre{background:#0d1b27;border:1px solid #1f3a52;border-radius:1rem;padding:1rem;overflow:auto;max-height:70vh}
     .code-file{display:block;background:#0d1b27;color:#cfe1ff;border:1px solid #1f3a52;border-radius:.7rem;
       padding:.6rem .8rem;margin:.3rem 0;font-weight:700;cursor:pointer;text-align:left}
+    .snapshots{display:flex; gap:1rem; flex-wrap:wrap}
+    .snapshots img{width:320px; max-width:100%; border-radius:1rem; background:#0d1b27; border:1px solid #1f3a52}
+    @media (max-width:950px){ .hero{grid-template-columns:1fr} .title-line{font-size:2.1rem} }
   </style>
 </head>
 <body>
+
+  <!-- HERO -->
   <section class="hero container">
     <div class="hero-text">
       <h1 class="title">
@@ -35,7 +40,7 @@
         <span class="title-line">Simulator:</span>
         <span class="title-line">A Heroic Aid for Children with Autism</span>
       </h1>
-      <p class="byline">By Harsh Byjesh — Developer & Coder</p>
+      <p class="byline">By Harsh Byjesh — Developer &amp; Coder</p>
       <p>A playful, inclusive assistive-tech project that turns therapy into adventure.
          Gesture control, haptics, and a VR interface make engagement feel heroic while
          logging progress for caregivers.</p>
@@ -46,53 +51,79 @@
         <span class="chip">VR + Haptics</span>
         <span class="chip">Data logging</span>
       </div>
-      <a href="#code" class="btn btn-solid">View Code</a>
       <a href="#device" class="btn btn-ghost">See the Device</a>
+      <a href="#code" class="btn btn-solid">View Code</a>
     </div>
+
+    <!-- hero image from Quant-Portfolio repo -->
     <div class="hero-visual">
-      <img src="images/animated.jpg" alt="Iron Man Arm"/>
+      <img
+        src="https://raw.githubusercontent.com/harshb2007/Quant-Portfolio/main/Ironman%20Hand%20Simulator/images/animated.jpg"
+        alt="Iron Man Arm"
+      />
     </div>
   </section>
 
+  <!-- DEVICE SNAPSHOTS FIRST -->
+  <section id="device" class="container">
+    <h2>Project Snapshots</h2>
+    <div class="snapshots">
+      <img
+        src="https://raw.githubusercontent.com/harshb2007/Quant-Portfolio/main/Ironman%20Hand%20Simulator/images/myo.png"
+        alt="MYO device">
+      <img
+        src="https://raw.githubusercontent.com/harshb2007/Quant-Portfolio/main/Ironman%20Hand%20Simulator/images/vr.png"
+        alt="VR device">
+    </div>
+  </section>
+
+  <!-- CODE VIEWER LAST -->
   <section id="code" class="container">
     <h2>Project Code</h2>
     <div style="display:grid;grid-template-columns:280px 1fr;gap:1rem">
-      <nav>
-        <button class="code-file" data-file="calibration.py">calibration.py</button>
-        <button class="code-file" data-file="config.py">config.py</button>
-        <button class="code-file" data-file="data_logging.py">data_logging.py</button>
-        <button class="code-file" data-file="effects_audio.py">effects_audio.py</button>
-        <button class="code-file" data-file="effects_light.py">effects_light.py</button>
-        <button class="code-file" data-file="gesture_recognition.py">gesture_recognition.py</button>
-        <button class="code-file" data-file="main_demo.py">main_demo.py</button>
-        <button class="code-file" data-file="myo_integration.py">myo_integration.py</button>
-        <button class="code-file" data-file="repulsor_game.py">repulsor_game.py</button>
-        <button class="code-file" data-file="simulator_core.py">simulator_core.py</button>
-        <button class="code-file" data-file="ui_dashboard.py">ui_dashboard.py</button>
-        <button class="code-file" data-file="vr_interface.py">vr_interface.py</button>
+      <nav id="codeList">
+        <!-- buttons injected by JS -->
       </nav>
-      <pre id="codeOut"><code>Click a file to load the code…</code></pre>
+      <pre id="codeOut"><code>Select a file from the list to load the code…</code></pre>
     </div>
   </section>
 
-  <section id="device" class="container">
-    <h2>Project Snapshots</h2>
-    <img src="images/myo.png" alt="MYO device" width="300">
-    <img src="images/vr.png" alt="VR device" width="300">
-  </section>
-
   <script>
-    const out = document.getElementById('codeOut');
-    document.querySelectorAll('.code-file').forEach(btn=>{
-      btn.addEventListener('click', async ()=>{
-        out.textContent = `Loading ${btn.dataset.file}…`;
-        try{
-          const res = await fetch(`codes/${btn.dataset.file}`);
-          if(!res.ok) throw new Error(res.status);
-          out.textContent = await res.text();
-        }catch(err){ out.textContent = "Error: " + err.message; }
-      });
+    // Raw GitHub bases (point to the source repo that contains your files)
+    const RAW_IMG_BASE = 'https://raw.githubusercontent.com/harshb2007/Quant-Portfolio/main/Ironman%20Hand%20Simulator/images/';
+    const RAW_CODE_BASE = 'https://raw.githubusercontent.com/harshb2007/Quant-Portfolio/main/Ironman%20Hand%20Simulator/codes/';
+
+    // File list to show in the code viewer
+    const FILES = [
+      'calibration.py','config.py','data_logging.py','effects_audio.py','effects_light.py',
+      'gesture_recognition.py','main_demo.py','myo_integration.py','repulsor_game.py',
+      'simulator_core.py','ui_dashboard.py','vr_interface.py'
+    ];
+
+    // Render code buttons
+    const list = document.getElementById('codeList');
+    FILES.forEach(name=>{
+      const b = document.createElement('button');
+      b.className = 'code-file';
+      b.textContent = name;
+      b.addEventListener('click', ()=>loadCode(name));
+      list.appendChild(b);
     });
+
+    // Fetch and display the raw file
+    const out = document.getElementById('codeOut');
+    async function loadCode(file){
+      out.textContent = 'Loading ' + file + '…';
+      try {
+        const url = RAW_CODE_BASE + encodeURIComponent(file);
+        const res = await fetch(url);
+        if(!res.ok) throw new Error('HTTP ' + res.status);
+        const txt = await res.text();
+        out.textContent = txt;
+      } catch(err){
+        out.textContent = 'Error: ' + err.message + '\n(Confirm the file exists and the name matches exactly.)';
+      }
+    }
   </script>
 </body>
 </html>
