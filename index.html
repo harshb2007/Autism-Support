@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>IronMan Hand Simulator — A Heroic Aid for Children with Autism</title>
+  <meta name="description" content="Playful, accessible showcase of the IronMan Hand Simulator: code, images, and mission to empower autistic children through engaging tech."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <div class="brand">
+      <div class="arc-reactor" aria-hidden="true"><span></span></div>
+      <h1>IronMan Hand Simulator</h1>
+    </div>
+    <nav class="topnav">
+      <a href="#mission">Mission</a>
+      <a href="#gallery">Snapshots</a>
+      <a href="#code">Code</a>
+      <a href="#credits">Credits</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" role="banner" aria-label="Project hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <h2>A Heroic Aid for Children with Autism</h2>
+      <p>
+        We blend <strong>engineering</strong> with <strong>empathy</strong> to create a playful,
+        inclusive simulator that helps kids feel confident and engaged&mdash;like a superhero.
+      </p>
+      <div class="cta-row">
+        <a class="btn primary" href="#code">View Code</a>
+        <a class="btn" href="#gallery">See the Device</a>
+      </div>
+      <div class="toggles">
+        <button id="reduceMotion" class="linklike" aria-pressed="false">🧘 Calm Mode</button>
+        <button id="highContrast" class="linklike" aria-pressed="false">🔳 High Contrast</button>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <div class="repulsor">
+        <div class="ring r1"></div>
+        <div class="ring r2"></div>
+        <div class="ring r3"></div>
+        <div class="core"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="mission" class="panel">
+  <div class="wrap">
+    <h3>Mission &amp; Approach</h3>
+    <div class="grid-3">
+      <article class="card">
+        <h4>Playful &amp; Therapeutic</h4>
+        <p>Designed around <em>playful interaction</em> + subtle therapeutic cues to keep learning joyful.</p>
+      </article>
+      <article class="card">
+        <h4>Inclusive Tech</h4>
+        <p>Built to be supportive and sensory-considerate. Calm Mode reduces motion for comfort.</p>
+      </article>
+      <article class="card">
+        <h4>Open &amp; Transparent</h4>
+        <p>All core logic is open-sourced so others can fork, extend, and help more kids.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="gallery" class="panel">
+  <div class="wrap">
+    <h3>Project Snapshots</h3>
+    <p class="muted">Images shown are placeholders. Replace <code>/images</code> with your actual device pictures.</p>
+    <div class="gallery">
+      <figure>
+        <img src="images/myo.png" alt="MYO integration photo placeholder">
+        <figcaption>MYO Integration</figcaption>
+      </figure>
+      <figure>
+        <img src="images/vr.png" alt="VR interface photo placeholder">
+        <figcaption>VR Interface</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="code" class="panel code-panel">
+  <div class="wrap code-wrap">
+    <aside class="code-list" aria-label="Code files list">
+      <h4>Code Files</h4>
+      <ul id="fileList"></ul>
+      <div class="note">
+        Files are fetched live from <code>/codes/</code>. Keep the directory structure when hosting.
+      </div>
+    </aside>
+    <main class="code-view" aria-live="polite" aria-busy="false">
+      <div class="code-toolbar">
+        <span id="currentFile">Select a file to view</span>
+        <a id="openRaw" class="linklike" href="#" target="_blank" rel="noopener">Open raw</a>
+      </div>
+      <pre><code id="codeContent" class="hljs language-python">// Choose a file from the left to load its contents here.</code></pre>
+    </main>
+  </div>
+</section>
+
+<section id="credits" class="panel">
+  <div class="wrap">
+    <h3>Credits &amp; Links</h3>
+    <ul class="links">
+      <li>Lead: <strong>Harsh Byjesh</strong></li>
+      <li>Focus: Assistive tech for autistic children via playful interaction</li>
+      <li><a href="https://github.com/" target="_blank" rel="noopener">Project GitHub Repository</a></li>
+    </ul>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap small">
+    <p>© <span id="year"></span> IronMan Hand Simulator • Built with care.</p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
