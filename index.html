@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IronMan Hand Simulator</title>
+  <style>
+    body {margin:0; font-family:Segoe UI, sans-serif; background:#0b1620; color:#dbe9ff}
+    .container{max-width:1200px;margin:0 auto;padding:2.25rem 1.25rem}
+    .hero{
+      display:grid; gap:2rem; align-items:center;
+      grid-template-columns: 1.2fr 1fr;
+    }
+    .hero-text{min-width:0}
+    .hero-visual img{width:100%; border-radius:1rem; box-shadow:0 10px 40px rgba(0,0,0,.35)}
+    .title-line{display:block; font-weight:800; letter-spacing:.3px; font-size:2.5rem}
+    .gradient{background:linear-gradient(90deg,#6cb2ff,#9c83ff); -webkit-background-clip:text; color:transparent}
+    .byline{color:#ffd54a; font-weight:700; margin:.35rem 0 1.1rem 0;}
+    .chip-row{display:flex; flex-wrap:wrap; gap:.6rem; margin:.25rem 0 1.2rem}
+    .chip{background:#10283a;border:1px solid #1f3a52;padding:.45rem .7rem;border-radius:999px;font-weight:600}
+    .btn{padding:.9rem 1.2rem;border-radius:.9rem;font-weight:800;text-decoration:none;display:inline-block}
+    .btn-solid{background:linear-gradient(135deg,#6cb2ff,#9c83ff);color:#081520}
+    .btn-ghost{color:#dbe9ff;background:rgba(156,131,255,.07)}
+    pre{background:#0d1b27;border:1px solid #1f3a52;border-radius:1rem;padding:1rem;overflow:auto;max-height:70vh}
+    .code-file{display:block;background:#0d1b27;color:#cfe1ff;border:1px solid #1f3a52;border-radius:.7rem;
+      padding:.6rem .8rem;margin:.3rem 0;font-weight:700;cursor:pointer;text-align:left}
+  </style>
+</head>
+<body>
+  <section class="hero container">
+    <div class="hero-text">
+      <h1 class="title">
+        <span class="title-line gradient">IronMan Hand</span>
+        <span class="title-line">Simulator:</span>
+        <span class="title-line">A Heroic Aid for Children with Autism</span>
+      </h1>
+      <p class="byline">By Harsh Byjesh — Developer & Coder</p>
+      <p>A playful, inclusive assistive-tech project that turns therapy into adventure.
+         Gesture control, haptics, and a VR interface make engagement feel heroic while
+         logging progress for caregivers.</p>
+      <div class="chip-row">
+        <span class="chip">MYO armband</span>
+        <span class="chip">Gesture recognition</span>
+        <span class="chip">Python</span>
+        <span class="chip">VR + Haptics</span>
+        <span class="chip">Data logging</span>
+      </div>
+      <a href="#code" class="btn btn-solid">View Code</a>
+      <a href="#device" class="btn btn-ghost">See the Device</a>
+    </div>
+    <div class="hero-visual">
+      <img src="images/animated.jpg" alt="Iron Man Arm"/>
+    </div>
+  </section>
+
+  <section id="code" class="container">
+    <h2>Project Code</h2>
+    <div style="display:grid;grid-template-columns:280px 1fr;gap:1rem">
+      <nav>
+        <button class="code-file" data-file="calibration.py">calibration.py</button>
+        <button class="code-file" data-file="config.py">config.py</button>
+        <button class="code-file" data-file="data_logging.py">data_logging.py</button>
+        <button class="code-file" data-file="effects_audio.py">effects_audio.py</button>
+        <button class="code-file" data-file="effects_light.py">effects_light.py</button>
+        <button class="code-file" data-file="gesture_recognition.py">gesture_recognition.py</button>
+        <button class="code-file" data-file="main_demo.py">main_demo.py</button>
+        <button class="code-file" data-file="myo_integration.py">myo_integration.py</button>
+        <button class="code-file" data-file="repulsor_game.py">repulsor_game.py</button>
+        <button class="code-file" data-file="simulator_core.py">simulator_core.py</button>
+        <button class="code-file" data-file="ui_dashboard.py">ui_dashboard.py</button>
+        <button class="code-file" data-file="vr_interface.py">vr_interface.py</button>
+      </nav>
+      <pre id="codeOut"><code>Click a file to load the code…</code></pre>
+    </div>
+  </section>
+
+  <section id="device" class="container">
+    <h2>Project Snapshots</h2>
+    <img src="images/myo.png" alt="MYO device" width="300">
+    <img src="images/vr.png" alt="VR device" width="300">
+  </section>
+
+  <script>
+    const out = document.getElementById('codeOut');
+    document.querySelectorAll('.code-file').forEach(btn=>{
+      btn.addEventListener('click', async ()=>{
+        out.textContent = `Loading ${btn.dataset.file}…`;
+        try{
+          const res = await fetch(`codes/${btn.dataset.file}`);
+          if(!res.ok) throw new Error(res.status);
+          out.textContent = await res.text();
+        }catch(err){ out.textContent = "Error: " + err.message; }
+      });
+    });
+  </script>
+</body>
+</html>
